@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="regular" translatable="false">@string/roboto_regular</string>
+    <string name="light" translatable="false">@string/roboto_light</string>
+    <string name="medium" translatable="false">@string/roboto_medium</string>
+    <string name="bold" translatable="false">@string/roboto_bold</string>
+
+    <!-- Roboto font-->
+    <string name="roboto_bold">fonts/Roboto-Bold.ttf</string>
+    <string name="roboto_medium">fonts/Roboto-Medium.ttf</string>
+    <string name="roboto_regular">fonts/Roboto-Regular.ttf</string>
+    <string name="roboto_light">fonts/Roboto-Light.ttf</string>
+</resources>

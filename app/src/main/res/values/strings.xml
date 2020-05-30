@@ -1,0 +1,24 @@
+<resources>
+    <!-- App name -->
+    <string name="app_name">AssessmentApp</string>
+
+    <!-- Activity titles -->
+    <string name="title_activity_gallery">Gallery</string>
+    <string name="title_activity_details">Item Details</string>
+
+    <!-- Text -->
+    <string name="text_connection_error">Connection Error</string>
+    <string name="text_network_connection_failed">Network connection failed</string>
+    <string name="text_sending_email">Sending email…</string>
+
+    <!-- Button text -->
+    <string name="action_retry">Retry</string>
+
+    <!-- Error -->
+    <string name="error_save_image_permission_required">Permission required</string>
+    <string name="error_save_image">Failed to save image</string>
+    <string name="error_output_stream">Failed to get output stream</string>
+    <string name="error_media_store">Failed to create new MediaStore record</string>
+    <string name="error_send_email">Request failed try again</string>
+    <string name="error_api_call_failure">Failed to fetch the information from server, Pls try again later</string>
+</resources>

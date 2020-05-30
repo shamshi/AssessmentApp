@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fast Item adapter ids -->
+    <item name="gallery_item" type="id" />
+    <item name="details_item" type="id" />
+
+    <!-- Views ids-->
+    <item name="fab" type="id" />
+</resources>

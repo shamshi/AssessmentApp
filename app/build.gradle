@@ -1,0 +1,130 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.shamseer.assessmentapp"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SERVER_URL", "\"$serverUrl\""
+
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SERVER_URL", "\"$serverUrl\""
+        }
+
+        uat {
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SERVER_URL", "\"$serverUrl\""
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    // Koin
+    implementation(
+            "org.koin:koin-androidx-ext:$koin_version",
+            "org.koin:koin-androidx-viewmodel:$koin_version"
+    )
+
+    // dependency injection
+    implementation(
+            // image loaders
+            "com.github.bumptech.glide:glide:$glide_version",
+            // networking
+            "com.amitshekhar.android:rx2-android-networking:$afnNetworking_version",
+            // logger
+            "com.orhanobut:logger:$logger_version"
+    )
+
+    // rx helpers
+    implementation(
+            // rx java
+            "io.reactivex.rxjava2:rxjava:$rxjava2_version",
+            "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    )
+
+    // Fast adapter
+    implementation(
+            "com.mikepenz:fastadapter:$fastAdapter_version",
+            "com.mikepenz:fastadapter-commons:$fastAdapter_version",
+            "com.mikepenz:fastadapter-extensions-expandable:$fastAdapter_version",
+            "com.mikepenz:fastadapter-extensions:$fastAdapter_version",
+            "com.mikepenz:itemanimators:$itemAnimator_version",
+            "com.mikepenz:materialize:$materiaDesign_version"
+    )
+
+    // gson
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // Ui Libs helper
+    implementation(
+            // calligraphy
+            "uk.co.chrisjenx:calligraphy:$calligraphy_version",
+            //Butter knife for view injections
+            "com.jakewharton:butterknife:$butterKinfe_version",
+            // progress layout manger
+            "com.github.vlonjatg:progress-activity:$progressActivity_version",
+            // material
+            "com.google.android.material:material:$material_version"
+    )
+
+    //retrofit
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofitRxjava_version"
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutinesLifecycle_version"
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    // testing frameworks
+    androidTestImplementation "androidx.test.ext:junit:$junit_version"
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0'
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version", {
+        exclude group: 'com.androidx', module: 'support-annotations'
+    })
+    // required if we want to use Mockito for unit tests
+    testImplementation("org.mockito:mockito-core:$mockito_version", "junit:junit:$jUnitTest_version",
+            "androidx.test:core:1.0.0",
+            'androidx.test:rules:1.1.1'
+    )
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+}

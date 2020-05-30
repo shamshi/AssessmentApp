@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activities.details.DetailsActivity">
+
+    <include layout="@layout/content_details"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/space_16"
+        android:src="@android:drawable/ic_dialog_email" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/emailLoader"
+        android:layout_width="@dimen/space_96"
+        android:layout_height="@dimen/space_96"
+        android:layout_margin="@dimen/space_16"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        app:lottie_colorFilter="@color/colorPrimary"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie/loader.json"
+        app:lottie_loop="true"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
