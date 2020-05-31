@@ -37,13 +37,13 @@ class MainActivityTest {
     }
 
     @Test
-    fun countItems() {
+    fun isPresent_GalleryItems_ReturnsTrue() {
         onView(withId(R.id.rvItems))
             .check(matches(withItemCount(8)))
     }
 
     @Test
-    fun countItemsWithViewAssertion() {
+    fun itemCount_GalleryItems_ReturnsTrue() {
         onView(withId(R.id.rvItems))
             .check(hasItemCount(8))
     }

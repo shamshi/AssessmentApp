@@ -1,7 +1,6 @@
 package com.shamseer.assessmentapp.ui.activities.details
 
 import android.content.Context
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -12,8 +11,6 @@ import com.shamseer.assessmentapp.CustomMatchers
 import com.shamseer.assessmentapp.R
 import org.junit.After
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 
@@ -43,14 +40,14 @@ class DetailsActivityTest {
     }
 
     @Test
-    fun checkItem() {
-        Espresso.onView(ViewMatchers.withId(R.id.rvDetails))
+    fun isPresent_DetailsItem_ReturnsTrue() {
+        onView(ViewMatchers.withId(R.id.rvDetails))
             .check(ViewAssertions.matches(CustomMatchers.withItemCount(1)))
     }
 
     @Test
-    fun checkItemWithViewAssertion() {
-        Espresso.onView(ViewMatchers.withId(R.id.rvDetails))
+    fun itemCount_DetailsItem_ReturnsTrue() {
+        onView(ViewMatchers.withId(R.id.rvDetails))
             .check(CustomAssertions.hasItemCount(1))
     }
 

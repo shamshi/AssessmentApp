@@ -115,16 +115,14 @@ dependencies {
 
     // testing frameworks
     androidTestImplementation "androidx.test.ext:junit:$junit_version"
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    testImplementation 'com.nhaarman:mockito-kotlin-kt1.1:1.5.0'
+    androidTestImplementation "androidx.test:runner:$runner_version"
+    androidTestImplementation "com.android.support.test:rules:$androidSupportTest_version"
+    androidTestImplementation "com.android.support.test:runner:$androidSupportTest_version"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlin_version"
+    testImplementation "org.mockito:mockito-inline:$mockitoInline_version"
     androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.androidx', module: 'support-annotations'
     })
-    // required if we want to use Mockito for unit tests
-    testImplementation("org.mockito:mockito-core:$mockito_version", "junit:junit:$jUnitTest_version",
-            "androidx.test:core:1.0.0",
-            'androidx.test:rules:1.1.1'
-    )
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    testImplementation "androidx.arch.core:core-testing:$archCore_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$testCoroutines_version"
 }

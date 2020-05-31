@@ -30,7 +30,7 @@ class DetailsViewModel : BaseViewModel() {
     }
 
     /** show Item Details */
-    private fun showItemDetails(item: Items.Item) {
+    fun showItemDetails(item: Items.Item) {
 
         if(!item.imageUrl.isNullOrEmpty()) {
             val itemDetails = ItemDetails() // adapter class

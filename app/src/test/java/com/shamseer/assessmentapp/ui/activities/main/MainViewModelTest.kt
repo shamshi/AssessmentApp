@@ -1,27 +1,28 @@
 package com.shamseer.assessmentapp.ui.activities.main
 
-import com.shamseer.assessmentapp.applications.helpers.rx.AppSchedulerProvider
-import com.shamseer.assessmentapp.data.remote.networking.ApiManagerRepository
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.shamseer.assessmentapp.data.remote.networking.models.Items
 import com.shamseer.assessmentapp.di.koin.modules.dataModule
 import com.shamseer.assessmentapp.di.koin.modules.viewModelModule
-import io.reactivex.disposables.CompositeDisposable
-import junit.framework.Assert.assertTrue
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
+import kotlinx.coroutines.runBlocking
+import org.junit.*
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
-import org.mockito.MockitoAnnotations
 
 /**
  * Created by Shamseer on 5/30/20.
  */
 class MainViewModelTest {
 
-    private var apiManager: ApiManagerRepository? = null
-    private var apiManagerData: ApiManagerRepository? = null
-    private var schedulerProvider: AppSchedulerProvider? = null
-    private var compositeDisposable: CompositeDisposable? = null
+    private lateinit var viewModel: MainViewModel
+
+    private val items = Items(listOf(
+        Items.Item(id = 1, title = "title 1", description = "description 1", imageUrl = "https://cloud.nousdigital.net/s/rezXHE6qGXGFHSd/preview"),
+        Items.Item(id = 2, title = "title 2", description = "description 1", imageUrl = "https://cloud.nousdigital.net/s/rFDbXBoyiHEmMfs/preview")
+    ))
+
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
 
     @Before
     fun setUp() {
@@ -31,34 +32,24 @@ class MainViewModelTest {
             modules(listOf(viewModelModule, dataModule))
         }
 
-        apiManager = ApiManagerRepository()
-        apiManagerData = ApiManagerRepository()
-        schedulerProvider = AppSchedulerProvider()
-        compositeDisposable = CompositeDisposable()
-
-        MockitoAnnotations.initMocks(this)
+        viewModel = MainViewModel()
     }
 
     @Test
-    fun item_DownloadFile_ReturnsExpectedValue() {
-        if(apiManager != null) {
-            val response = apiManager!!.downloadImageDetails().test()
-            if (response.errors().isEmpty()) {
-                response.assertNoErrors()
-                assertTrue(response.isTerminated)
-                response.dispose()
-            } else {
-                response.assertError(Throwable::class.java)
-                response.dispose()
-            }
-        }
+    fun loadGallery_Items_ReturnsTrue() = runBlocking {
+        viewModel.showItemInfo(items)
+        val isItemNotEmpty = viewModel.showItems.value
+        Assert.assertNotNull(isItemNotEmpty)
+        return@runBlocking
+    }
+
+    @Test
+    fun isPresent_Gallery_ReturnsTrue() {
+        viewModel.showItemInfo(items)
+        Assert.assertTrue(viewModel.showItems.value != null)
     }
 
     @After
     fun tearDown() {
-        apiManager = null
-        apiManagerData = null
-        schedulerProvider = null
-        compositeDisposable = null
     }
 }
